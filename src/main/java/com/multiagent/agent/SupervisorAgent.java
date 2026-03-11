@@ -19,7 +19,7 @@ public class SupervisorAgent implements Agent {
 
     @Override
     public String description() {
-        return "负责调度各agent工作，如果没有符合的agent的简单任务就自己解决";
+        return "调度Agent - 分析用户意图，将任务分发给合适的专业Agent处理";
     }
 
     @Override

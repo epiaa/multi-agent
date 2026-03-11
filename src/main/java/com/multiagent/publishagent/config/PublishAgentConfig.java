@@ -1,8 +1,8 @@
 package com.multiagent.publishagent.config;
 
 
-import com.multiagent.agent.PublishAgent;
 import com.multiagent.publishagent.tool.PublishAgentTool;
+import dev.langchain4j.memory.chat.ChatMemoryProvider;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import org.springframework.context.annotation.Bean;
@@ -14,11 +14,13 @@ public class PublishAgentConfig {
     @Bean
     public PublishAgentService publishAgentService(
             OpenAiChatModel chatModel,
-            PublishAgentTool publishAgentTool
+            PublishAgentTool publishAgentTool,
+            ChatMemoryProvider chatMemoryProvider
     ) {
         return AiServices.builder(PublishAgentService.class)
                 .chatModel(chatModel)
                 .tools(publishAgentTool)
+                .chatMemoryProvider(chatMemoryProvider)
                 .build();
     }
 }

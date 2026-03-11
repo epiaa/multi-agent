@@ -1,5 +1,6 @@
 package com.multiagent.publishagent.config;
 
+import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 
 public interface PublishAgentService {
@@ -9,5 +10,5 @@ public interface PublishAgentService {
             完成它发布的任务  
             """
     )
-    public String chat(String task);
+    String chat(@MemoryId String memoryId, String task);
 }

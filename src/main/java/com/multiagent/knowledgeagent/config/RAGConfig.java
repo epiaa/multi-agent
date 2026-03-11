@@ -28,11 +28,11 @@ public class RAGConfig {
                 // 关键修改：使用 documentTransformer 添加元数据
                 .documentTransformer(document -> {
                     // 获取文件名（假设文档加载时已有 file_name 元数据）
-                    String fileName = String.valueOf(document.metadata());
+                    String fileName = document.metadata().getString("file_name");
                     // 构建新的元数据对象
                     Metadata metadata = Metadata.from(
                             Map.of(
-                                    "source", fileName,
+                                    "source", fileName != null ? fileName : "unknown",
                                     "category", "knowledge",
                                     "loaded_at", LocalDateTime.now().toString()
                             )

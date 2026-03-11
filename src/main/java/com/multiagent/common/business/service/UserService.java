@@ -51,6 +51,6 @@ public class UserService extends ServiceImpl<UserMapper, UserPO> {
     public void send(String phone) {
         String code = RandomUtil.randomNumbers(6);
         redisTemplate.opsForValue().set("LOGIN:CODE:" + phone, JSONUtil.toJsonStr(code), 60, TimeUnit.SECONDS);
-        System.out.println(code);
+        log.info("验证码已发送至手机: {}, 验证码: {}", phone, code);
     }
 }

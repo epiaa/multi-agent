@@ -4,9 +4,9 @@ server:
 langchain4j:
   open-ai:
     chat-model:
-      api-key: sk-3ac8475a893a4856b97aa41dc2bbb378
-      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
-      model-name: qwen3-max
+      api-key: ${OPENAI_API_KEY:your-api-key-here}
+      base-url: ${OPENAI_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+      model-name: ${OPENAI_MODEL_NAME:qwen3-max}
       temperature: 0.3
       max-tokens: 2000
       timeout: 60s
@@ -14,9 +14,9 @@ langchain4j:
       log-requests: true
       log-responses: true
     streaming-chat-model:
-      api-key: sk-3ac8475a893a4856b97aa41dc2bbb378
-      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
-      model-name: qwen3-max
+      api-key: ${OPENAI_API_KEY:your-api-key-here}
+      base-url: ${OPENAI_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+      model-name: ${OPENAI_MODEL_NAME:qwen3-max}
       temperature: 0.3
       max-tokens: 2000
       timeout: 60s
@@ -24,9 +24,9 @@ langchain4j:
       log-requests: true
       log-responses: true
     embedding-model:
-      api-key: sk-3ac8475a893a4856b97aa41dc2bbb378
-      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
-      model-name: text-embedding-v1
+      api-key: ${OPENAI_API_KEY:your-api-key-here}
+      base-url: ${OPENAI_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+      model-name: ${EMBEDDING_MODEL_NAME:text-embedding-v1}
       timeout: 60s
       max-retries: 3
       log-requests: true
@@ -43,12 +43,13 @@ spring:
     name: multi-agent
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://192.168.110.129:5432/ai_vector
-    username: postgres
-    password: root
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/ai_vector}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:root}
   data:
     redis:
-      host: localhost
-      port: 6379
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
 
 

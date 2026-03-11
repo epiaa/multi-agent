@@ -88,7 +88,7 @@ public class RAGInitializer implements ApplicationRunner {
             ragDocumentService.save(doc);
         }
 
-        System.out.println("增量加载完成，新文档: " + newFiles.size());
+        log.info("增量加载完成，新文档: {}", newFiles.size());
     }
 
     private String calculateFileHash(File file) throws Exception {

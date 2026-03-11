@@ -17,11 +17,11 @@ public class PublishAgent implements Agent {
 
     @Override
     public String description() {
-        return "操作publish数据库，完成订阅课程相关的问题";
+        return "课程订阅Agent - 管理用户的课程订阅，执行订阅/取消订阅/查看课程等操作";
     }
 
     @Override
     public String handle(String memoryId, String task) {
-        return publishAgentService.chat(task);
+        return publishAgentService.chat(memoryId, task);
     }
 }

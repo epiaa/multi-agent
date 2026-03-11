@@ -17,11 +17,11 @@ public class KnowledgeAgent implements Agent {
 
     @Override
     public String description() {
-        return "回答课程相关问题";
+        return "知识问答Agent - 回答课程相关的知识问题，提供技术讲解和知识检索";
     }
 
     @Override
     public String handle(String memoryId, String task) {
-        return knowledgeAgentService.chat(task);
+        return knowledgeAgentService.chat(memoryId, task);
     }
 }

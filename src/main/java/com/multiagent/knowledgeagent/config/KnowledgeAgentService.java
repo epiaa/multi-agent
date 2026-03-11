@@ -1,5 +1,6 @@
 package com.multiagent.knowledgeagent.config;
 
+import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 
 public interface KnowledgeAgentService {
@@ -9,5 +10,5 @@ public interface KnowledgeAgentService {
             完成它发布的任务  
             """
     )
-    public String chat(String Task);
+    String chat(@MemoryId String memoryId, String task);
 }
