@@ -9,6 +9,7 @@ import com.multiagent.common.business.mapper.UserMapper;
 import com.multiagent.common.entity.UserLogin;
 import com.multiagent.common.entity.UserPO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService extends ServiceImpl<UserMapper, UserPO> {
