@@ -4,7 +4,7 @@ public interface Agent {
 
     String name();
 
-    String description();
+    boolean support(AgentRequest agentRequest);
 
-    String handle(String memoryId, String task);
+    AgentResponse execute(AgentRequest agentRequest);
 }

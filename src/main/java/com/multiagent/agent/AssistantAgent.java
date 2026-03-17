@@ -1,31 +1,31 @@
 package com.multiagent.agent;
 
-import com.multiagent.toolagent.publishagent.config.PublishAgentService;
+import com.multiagent.orchestrator.config.AssistantAgentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PublishAgent implements Agent {
+public class AssistantAgent implements Agent {
 
-    private final PublishAgentService publishAgentService;
+    private final AssistantAgentService assistantAgentService;
 
-    public PublishAgent(PublishAgentService publishAgentService) {
-        this.publishAgentService = publishAgentService;
+    public AssistantAgent(AssistantAgentService assistantAgentService) {
+        this.assistantAgentService = assistantAgentService;
     }
 
     @Override
     public String name() {
-        return "publish-agent";
+        return "assistant-agent";
     }
 
     @Override
     public boolean support(AgentRequest request) {
-        return request.getMessage().contains("publish");
+        return request.getMessage().contains("assistant");
     }
 
     @Override
     public AgentResponse execute(AgentRequest request) {
-        String response = publishAgentService.chat(request.getMessage());
+        String response = assistantAgentService.chat(request.getMessage());
         return AgentResponse.builder()
                 .requestId(request.getRequestId())
                 .output(response)
