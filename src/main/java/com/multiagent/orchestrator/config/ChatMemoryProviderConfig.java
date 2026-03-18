@@ -19,7 +19,7 @@ public class ChatMemoryProviderConfig {
     public ChatMemoryProvider chatMemoryProvider(RedisChatMessageStore store) {
         return o -> TokenWindowChatMemory.builder()
                 .id(o)
-                .maxTokens(2000, new QwenTokenCountEstimator(API_KEY, "qwen3-max"))
+                .maxTokens(2000, new QwenTokenCountEstimator(API_KEY, "qwen-turbo"))
                 .chatMemoryStore(store)
                 .build();
     }

@@ -24,6 +24,7 @@ public class PublishAgentTool {
     private final PublishService publishService;
     private final CourseService courseService;
 
+
     @Tool("获取用户订阅的所有课程")
     public List<CoursePO> getAllPublish() {
         Long userId = UserHolder.getUser().getId();

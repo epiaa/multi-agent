@@ -14,13 +14,8 @@ public class PublishAgentConfig {
     @Bean
     public PublishAgentService publishAgentService(
             OpenAiChatModel chatModel,
-            PublishAgentTool publishAgentTool,
-            ChatMemoryProvider chatMemoryProvider
+            PublishAgentTool publishAgentTool
     ) {
-        return AiServices.builder(PublishAgentService.class)
-                .chatModel(chatModel)
-                .tools(publishAgentTool)
-                .chatMemoryProvider(chatMemoryProvider)
-                .build();
+        return new PublishAgentServiceImpl(chatModel, publishAgentTool);
     }
 }

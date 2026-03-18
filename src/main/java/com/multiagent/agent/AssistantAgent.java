@@ -1,9 +1,16 @@
 package com.multiagent.agent;
 
 import com.multiagent.orchestrator.config.AssistantAgentService;
+import dev.langchain4j.data.message.ChatMessage;
+import dev.langchain4j.data.message.ChatMessageDeserializer;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Slf4j
 @Component
 public class AssistantAgent implements Agent {
 
@@ -25,7 +32,8 @@ public class AssistantAgent implements Agent {
 
     @Override
     public AgentResponse execute(AgentRequest request) {
-        String response = assistantAgentService.chat(request.getMessage());
+
+        String response = assistantAgentService.chat(request.getMessages());
         return AgentResponse.builder()
                 .requestId(request.getRequestId())
                 .output(response)

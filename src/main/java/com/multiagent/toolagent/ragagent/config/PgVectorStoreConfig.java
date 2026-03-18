@@ -17,7 +17,7 @@ public class PgVectorStoreConfig {
                 .user("postgres")
                 .password("root")
                 .table("rag_documents")
-                .dimension(384)
+                .dimension(1536)
                 .build();
     }
 

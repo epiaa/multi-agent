@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
@@ -27,18 +28,16 @@ public class RAGConfig {
                 .documentSplitter(DocumentSplitters.recursive(500, 100))
                 // 关键修改：使用 documentTransformer 添加元数据
                 .documentTransformer(document -> {
-                    // 获取文件名（假设文档加载时已有 file_name 元数据）
-                    String fileName = document.metadata().getString("file_name");
-                    // 构建新的元数据对象
-                    Metadata metadata = Metadata.from(
-                            Map.of(
-                                    "source", fileName != null ? fileName : "unknown",
-                                    "category", "knowledge",
-                                    "loaded_at", LocalDateTime.now().toString()
-                            )
-                    );
-                    // 返回携带新元数据的文档
-                    return Document.from(document.text(), metadata);
+                    Map<String, Object> metaMap = new HashMap<>(document.metadata().toMap());
+
+                    String fileName = (String) metaMap.get("file_name");
+
+                    // 增量补充，而不是覆盖
+                    metaMap.put("source", fileName != null ? fileName : "unknown");
+                    metaMap.put("category", "knowledge");
+                    metaMap.put("loaded_at", LocalDateTime.now().toString());
+
+                    return Document.from(document.text(), Metadata.from(metaMap));
                 })
                 .build();
     }

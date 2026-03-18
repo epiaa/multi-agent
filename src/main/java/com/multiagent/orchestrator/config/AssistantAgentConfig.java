@@ -12,12 +12,8 @@ public class AssistantAgentConfig {
 
     @Bean
     public AssistantAgentService assistantAgentService(
-            OpenAiChatModel chatModel,
-            ChatMemoryProvider chatMemoryProvider
+            OpenAiChatModel chatModel
     ) {
-        return AiServices.builder(AssistantAgentService.class)
-                .chatModel(chatModel)
-                .chatMemoryProvider(chatMemoryProvider)
-                .build();
+        return new AssistantAgentServiceImpl(chatModel);
     }
 }

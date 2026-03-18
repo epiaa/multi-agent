@@ -13,13 +13,8 @@ public class RAGAgentConfig {
     @Bean
     public RAGAgentService ragAgentService(
             OpenAiChatModel chatModel,
-            ChatMemoryProvider chatMemoryProvider,
             ContentRetriever retriever
     ) {
-        return AiServices.builder(RAGAgentService.class)
-                .chatModel(chatModel)
-                .contentRetriever(retriever)
-                .chatMemoryProvider(chatMemoryProvider)
-                .build();
+        return new RAGAgentServiceImpl(chatModel, retriever);
     }
 }

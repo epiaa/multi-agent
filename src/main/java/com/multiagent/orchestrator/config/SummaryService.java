@@ -14,7 +14,7 @@ public class SummaryService {
     private final RedisChatMessageStore redisChatMessageStore;
 
     public void generateAndSaveSummary(Object o, List<ChatMessage> messages){
-        String chat = assistantAgentService.chat(messages.toString());
+        String chat = assistantAgentService.chat(messages);
         redisChatMessageStore.updateSummary(o, chat);
     }
 

@@ -1,9 +1,16 @@
 package com.multiagent.agent;
 
 import com.multiagent.toolagent.publishagent.config.PublishAgentService;
+import dev.langchain4j.data.message.ChatMessage;
+import dev.langchain4j.data.message.ChatMessageDeserializer;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Slf4j
 @Component
 public class PublishAgent implements Agent {
 
@@ -25,7 +32,7 @@ public class PublishAgent implements Agent {
 
     @Override
     public AgentResponse execute(AgentRequest request) {
-        String response = publishAgentService.chat(request.getMessage());
+        String response = publishAgentService.chat(request.getMessages());
         return AgentResponse.builder()
                 .requestId(request.getRequestId())
                 .output(response)
